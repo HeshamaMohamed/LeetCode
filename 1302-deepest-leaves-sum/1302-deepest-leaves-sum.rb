@@ -12,17 +12,15 @@
 def deepest_leaves_sum(root)
     tree = Hash.new {|h,k| h[k] = []}
     
-    get_nodes(root, tree, 0)
+    fill_tree(root, tree, 0)
     
-    max_level = tree.keys.max
+    max_level = tree.keys[-1]
     tree[max_level].sum
 end
 
-def get_nodes(root, hash, level)
-    hash[level] << root.val
+def fill_tree(node, tree, level)
+    tree[level] << node.val
     
-    left = root.left ? get_nodes(root.left, hash, level + 1) : {}
-    right= root.right ? get_nodes(root.right, hash, level + 1) : {}
+    fill_tree(node.left, tree, level + 1) if node.left
+    fill_tree(node.right, tree, level + 1) if node.right
 end
-   
-   
