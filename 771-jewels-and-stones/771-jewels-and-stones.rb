@@ -2,7 +2,9 @@
 # @param {String} stones
 # @return {Integer}
 def num_jewels_in_stones(jewels, stones)
-    sorted_stones = stones.chars.sort
     sorted_jewels = jewels.chars.sort
-    sorted_stones.count { |stone| sorted_jewels.include?(stone) }
+    stones.chars.count { |stone| sorted_jewels.include?(stone) }
+    
+    # used sorting for performance optimization
+    # the include? method now performs faster since the probability of finding the element early increases.
 end
