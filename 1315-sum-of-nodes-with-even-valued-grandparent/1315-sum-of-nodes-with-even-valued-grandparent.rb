@@ -17,8 +17,9 @@ end
 
 def get_sum(node, sum, parent = nil, grandparent = nil)
     return if node.nil?
-    sum << node.val if grandparent&.even?
     
-    get_sum(node.left, sum, node.val, parent)
-    get_sum(node.right, sum, node.val, parent)
+    sum << node.val if grandparent
+    
+    get_sum(node.left, sum, node.val, parent&.even?)
+    get_sum(node.right, sum, node.val, parent&.even?)
 end
